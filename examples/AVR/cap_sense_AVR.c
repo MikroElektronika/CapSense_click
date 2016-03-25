@@ -1,31 +1,31 @@
 /*
  * Project name:
-     CapSense Click Example
+ *    CapSense Click Example
  * Copyright:
-     (c) Mikroelektronika, 2013.
+ *    (c) Mikroelektronika, 2013.
  * Revision History:
-     20131204:
-       - initial release (DO);
+ *    20131204:
+ *      - initial release (DO);
  * Description:
-      This is a simple demonstration how CapSense click can be used.
-      By pressing the CS button, LED below the button will be toggled ON and OFF.
-      Swiping the finger over the slider will move the LED on PORTD LED array.
+ *     This is a simple demonstration how CapSense click can be used.
+ *     By pressing the CS button, LED below the button will be toggled ON and OFF.
+ *     Swiping the finger over the slider will move the LED on PORTD LED array.
  * Test configuration:
-     MCU:             ATmega32
-                      http://www.atmel.com/images/doc2503.pdf
-     Dev.Board:       EasyAVR v7
-                      http://www.mikroe.com/easyzvr/
-     Oscillator:      8.0000 MHz Crystal
-     Ext. Modules:    CapSense Click board
-                      ac:CapSense_click
-                      http://www.mikroe.com/click/capsense/
-     SW:              mikroC PRO for AVR
-                      http://www.mikroe.com/mikroc/avr/
+ *    MCU:             ATmega32
+ *                     http://www.atmel.com/images/doc2503.pdf
+ *    Dev.Board:       EasyAVR v7
+ *                     http://www.mikroe.com/easyzvr/
+ *    Oscillator:      8.0000 MHz Crystal
+ *    Ext. Modules:    CapSense Click board
+ *                     ac:CapSense_click
+ *                     http://www.mikroe.com/click/capsense/
+ *    SW:              mikroC PRO for AVR
+ *                     http://www.mikroe.com/mikroc/avr/
  * NOTES:
-     - Place CapSense click in mikroBUS1 socket
-     - Turn ON I2C3 switches on SW6.
-     - Turn ON PORTD LEDs on SW10.
-*/
+ *    - Place CapSense click in mikroBUS1 socket
+ *    - Turn ON I2C3 switches on SW6.
+ *    - Turn ON PORTD LEDs on SW10.
+ */
 
 #include "CY8C201A0.h"
 #include "built_in.h"
