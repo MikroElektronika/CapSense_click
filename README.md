@@ -1,8 +1,10 @@
 ![MikroE](http://www.mikroe.com/img/designs/beta/logo_small.png)
-#CapSense click#
-##By [MikroElektronika](http://www.mikroe.com)
+
 ![CapSnese_click](http://www.mikroe.com/img/news/2013/12/capsense_click_news_banner.jpg)
 
+---
+
+### General Description
 CapSense click™ add-on board features a capacitive sensing module CY8C201A0 which 
 takes human body capacitance as an input and directly provides the real time sensor 
 information via I2C output. The board contains capacitive sensing elements 
