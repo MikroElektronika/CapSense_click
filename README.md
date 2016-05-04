@@ -4,6 +4,12 @@
 
 ---
 
+[Product Page](http://www.mikroe.com/click/capsense/)
+
+[Learn Page](http://learn.mikroe.com/modern-slider-cap-sense/)
+
+---
+
 ### General Description
 CapSense click™ add-on board features a capacitive sensing module CY8C201A0 which 
 takes human body capacitance as an input and directly provides the real time sensor 
