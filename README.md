@@ -6,7 +6,7 @@
 
 - **CIC Prefix**  : CAPSENSE
 - **Author**      : Nenad Filipovic
-- **Verison**     : 1.0.0
+- **Verison**     : 1.0.1
 - **Date**        : Jul 2018.
 
 ---
