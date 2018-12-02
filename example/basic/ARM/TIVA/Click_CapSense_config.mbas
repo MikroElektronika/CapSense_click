@@ -1,0 +1,8 @@
+module Click_CapSense_config
+
+include Click_CapSense_types
+
+const
+    _CAPSENSE_I2C_CFG as uint32_t[1] = (_I2C_BITRATE_STANDARD_MODE)
+    
+end.

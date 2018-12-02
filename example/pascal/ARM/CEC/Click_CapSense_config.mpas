@@ -1,0 +1,8 @@
+unit Click_CapSense_config;
+
+uses Click_CapSense_types;
+
+const
+    _CAPSENSE_I2C_CFG : array[1] of uint32_t = (_I2C_100KHZ); 
+    
+end.

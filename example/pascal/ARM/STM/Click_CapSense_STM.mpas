@@ -1,0 +1,111 @@
+{*
+Example for CapSense Click
+
+    Date          : Jul 2018.
+    Author        : Nenad Filipovic
+
+Test configuration STM32 :
+    
+    MCU              : STM32F107VCT6
+    Dev. Board       : EasyMx PRO v7 for STM32
+    ARM Compiler ver : v6.0.0.0
+
+---
+
+Description :
+
+The application is composed of three sections :
+
+- System Initialization - Initializes I2C and set AN and RST pin as output.
+- Application Initialization - Initialization driver enable's - I2C. Initialize CapSense click register and start writen via UART.
+- Application Task - (code snippet) This is a example which demonstrates the use of CapSense click board.
+     Press top and bottom button and turn it ON or OFF button LED's,
+     swipe slider to sent log to the UART where you can track their changes.
+
+Additional Functions :
+
+- UART
+- Conversions
+
+*}
+program Click_CapSense_STM;
+
+uses Click_CapSense_types, Click_CapSense_config;
+
+procedure systemInit(); 
+begin
+
+    mikrobus_gpioInit(_MIKROBUS1, _MIKROBUS_AN_PIN, _GPIO_OUTPUT); 
+    mikrobus_gpioInit(_MIKROBUS1, _MIKROBUS_RST_PIN, _GPIO_INPUT); 
+    mikrobus_i2cInit(_MIKROBUS1, @_CAPSENSE_I2C_CFG[0]); 
+    mikrobus_logInit(_MIKROBUS2, 9600); 
+    Delay_100ms(); 
+
+end;
+
+procedure applicationInit(); 
+begin
+
+    capsense_i2cDriverInit(T_CAPSENSE_P(@_MIKROBUS1_GPIO), T_CAPSENSE_P(@_MIKROBUS1_I2C), _CAPSENSE_I2C_ADDRESS_0); 
+    Delay_100ms(); 
+    capsense_init(); 
+    mikrobus_logWrite('Initialisation', _LOG_LINE); 
+    mikrobus_logWrite('-------------------------------', _LOG_LINE); 
+    Delay_100ms(); 
+
+end;
+
+procedure applicationTask(); 
+var
+    currentLedState : uint8_t;
+    buttonSelect : uint8_t;
+    sliderValue : uint8_t;
+    sliderLvl : uint16_t;
+    sliderLvlTxt : array[15] of char;
+    sliderValueTxt : array[15] of char;
+begin
+
+    buttonSelect := capsense_readData(_CAPSENSE_CS_READ_STATUS0); 
+    sliderValue := capsense_readDataBytes(_CAPSENSE_CS_READ_RAW); 
+    capsense_writeData(_CAPSENSE_OUTPUT_PORT0, currentLedState); 
+    Delay_100ms(); 
+    if ((buttonSelect = 8)) then 
+    begin
+        currentLedState := (currentLedState xor 0x01); 
+        Delay_100ms(); 
+    end; 
+    if ((buttonSelect = 16)) then 
+    begin
+        currentLedState := (currentLedState xor 0x02); 
+        Delay_100ms(); 
+    end; 
+    if ((buttonSelect = 24)) then 
+    begin
+        currentLedState := not currentLedState; 
+        Delay_100ms(); 
+    end; 
+    sliderLvl := capsense_getSliderLvl(); 
+    if ((sliderValue <> 0)) then 
+    begin
+        mikrobus_logWrite('Slider lvl. ', _LOG_TEXT); 
+        LongIntToStr(sliderLvl, sliderLvlTxt); 
+        mikrobus_logWrite(sliderLvlTxt, _LOG_LINE); 
+        mikrobus_logWrite('Slider value', _LOG_TEXT); 
+        LongIntToStr(sliderValue, sliderValueTxt); 
+        mikrobus_logWrite(sliderValueTxt, _LOG_LINE); 
+        mikrobus_logWrite('', _LOG_LINE); 
+        Delay_100ms(); 
+    end; 
+
+end;
+
+begin
+
+    systemInit(); 
+    applicationInit(); 
+    while (1) do 
+    begin 
+        applicationTask(); 
+    end;
+
+end.
